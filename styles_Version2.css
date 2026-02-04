@@ -1,0 +1,113 @@
+:root{
+  --bg:#0b2f23; /* deep dark green */
+  --panel:#0f3a2d;
+  --accent:#b7d9c4; /* soft sage */
+  --muted:#cfe7d8;
+  --text:#f5fbf7;
+  --glass: rgba(255,255,255,0.04);
+  --max-width:1100px;
+  --radius:16px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background:
+    radial-gradient(1200px 600px at 10% 10%, rgba(183,217,196,0.06), transparent 10%),
+    radial-gradient(900px 500px at 90% 90%, rgba(183,217,196,0.03), transparent 10%),
+    var(--bg);
+  color:var(--text);
+  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* subtle floral corner using inline SVG background */
+.hero{
+  padding:64px 16px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800"><defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="%23b7d9c4" stop-opacity="0.08"/><stop offset="1" stop-color="%230b2f23" stop-opacity="0"/></linearGradient></defs><g fill="url(%23g)"><path d="M50 700c120-50 180-220 380-260 220-45 325 80 390 55-70 85-220 210-380 235S170 760 50 700z"/></g></svg>');
+  background-repeat:no-repeat;
+  background-position:right bottom;
+  opacity:0.35;
+  pointer-events:none;
+}
+
+/* inner container */
+.hero-inner{max-width:var(--max-width);margin:0 auto;padding:8px;}
+
+.names{
+  margin:0;
+  font-family:"Playfair Display", Georgia, serif;
+  font-size:48px;
+  letter-spacing:1px;
+  color:var(--accent);
+  font-weight:700;
+}
+.date{margin:8px 0 20px;color:var(--muted);}
+
+.top-nav{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.top-nav a{color:var(--muted);text-decoration:none;font-weight:500;padding:6px 10px;border-radius:8px}
+.top-nav a:hover{background:rgba(255,255,255,0.03)}
+
+/* content */
+main{max-width:var(--max-width);margin:30px auto;padding:0 16px}
+.section{margin-bottom:20px}
+.card{
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));
+  padding:22px;
+  border-radius:var(--radius);
+  box-shadow:0 6px 18px rgba(0,0,0,0.35);
+  border:1px solid rgba(255,255,255,0.03);
+}
+
+/* headings */
+h2{font-family:"Playfair Display";margin:0 0 12px;font-size:24px;color:var(--accent)}
+
+/* gallery */
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:12px;
+  margin-top:10px;
+}
+.gallery-item{position:relative;overflow:hidden;border-radius:12px;cursor:pointer}
+.gallery-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s ease}
+.gallery-item:hover img{transform:scale(1.05)}
+
+/* rsvp */
+.muted{color:var(--muted);font-size:0.95rem}
+.btn{
+  display:inline-block;
+  background:var(--accent);
+  color:var(--bg);
+  padding:10px 16px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:600;
+}
+
+/* footer */
+.footer{text-align:center;padding:28px 16px;color:var(--muted);font-size:0.95rem}
+
+/* lightbox */
+.lightbox{
+  position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.75);z-index:9999;padding:20px;
+}
+.lightbox img{max-width:95%;max-height:80vh;border-radius:8px;box-shadow:0 8px 30px rgba(0,0,0,0.6)}
+.lightbox-close{position:absolute;top:18px;right:18px;background:transparent;color:var(--text);border:0;font-size:34px;line-height:1;cursor:pointer}
+.lightbox-caption{color:var(--muted);margin-top:12px;text-align:center}
+
+/* responsive */
+@media (min-width:900px){
+  .hero{padding:90px 16px}
+  .names{font-size:64px}
+}
